@@ -39,35 +39,10 @@ class EDA:
     def __init__(self):
         pass
 
-
-    #========print_bar=====================================#
-    #========Print functions for bar graphs specifically ==#
-    def print_bar(self, x, y, x_label, y_label, title='insert title', orientation='vert', color='blue',
-                  width=0.65, fig_size=(23,7), percentage=False, weight='bold', tick_size=20, title_size=30):
-
-        fig, ax = plt.subplots(figsize=fig_size)
-        if orientation=='vert':
-            bars_for_annotation = ax.bar(x, y, color=color, align='center', width=width)
-        elif orientation=='hort':
-            bars_for_annotation = ax.barh(x, y, color=color, align='center')
-
-        plt.xticks(size = 13, rotation=90)
-        plt.yticks(size = 15)
-        plt.xlabel(x_label, size=tick_size, color=color)
-        plt.ylabel(y_label, size=tick_size, color=color)
-        plt.title(title, fontsize=title_size, color=color)
-
-        if percentage:
-            self.autolabel_percent(bars_for_annotation, orientation)
-        elif not percentage:
-            self.autolabel(bars_for_annotation, orientation)
-
-        plt.show()
-
-
-    #========AUTOLABEL_PERCENT takes in rect objects from ===================#
+    
+    #========AUTOLABEL takes in rect objects from ===========================#
     #========subplots and output their numerical values on top of BAR PLOTS =#
-    def autolabel(self, rects, orientation='vert'):
+    def autolabel(self, rects, ax, orientation='vert'):
         #prints value above vertical bars
         if orientation=='vert':
             for rect in rects:
@@ -92,7 +67,7 @@ class EDA:
 
     #========AUTOLABEL_PERCENT takes in rect objects from ==============#
     #========subplots and output percentage values on top of BAR PLOTS =#
-    def autolabel_percent(self, rects, orientation='vert'):
+    def autolabel_percent(self, rects, ax, orientation='vert'):
         #Prints percentage above bars for vertical bars
         if orientation=='vert':
             for rect in rects:
@@ -113,6 +88,32 @@ class EDA:
                             xytext=(3,-6),
                             textcoords="offset points",
                             size=15)
+
+    #========print_bar=====================================#
+    #========Print functions for bar graphs specifically ==#
+    def print_bar(self, x, y, x_label, y_label, title='insert title', orientation='vert', color='blue',
+                  width=0.65, fig_size=(23,7), percentage=False, weight='bold', tick_size=20, title_size=30):
+    
+        fig, ax = plt.subplots(figsize=fig_size)
+        if orientation=='vert':
+            bars_for_annotation = ax.bar(x, y, color=color, align='center', width=width)
+        elif orientation=='hort':
+            bars_for_annotation = ax.barh(x, y, color=color, align='center')
+            
+        
+        plt.xticks(size = 13)
+        plt.yticks(size = 15)
+        plt.xlabel(x_label, size=tick_size, color=color)
+        plt.ylabel(y_label, size=tick_size, color=color)
+        plt.title(title, fontsize=title_size, color=color)
+    
+        if percentage:
+            self.autolabel_percent(bars_for_annotation, ax, orientation=orientation)
+        elif not percentage:
+            self.autolabel(bars_for_annotation, ax, orientation=orientation)
+
+        plt.show()
+
 
     #========language_detect takes in a series of STRINGS objects ====#
     #========and returns their expected language code ================#
