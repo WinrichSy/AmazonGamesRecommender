@@ -29,6 +29,7 @@ from nltk.stem.porter import PorterStemmer
 from nltk.stem.snowball import SnowballStemmer
 from nltk.stem.wordnet import WordNetLemmatizer
 from nltk import pos_tag
+import unicodedata
 
 warnings.filterwarnings('ignore')
 plt.style.use('ggplot')
@@ -37,6 +38,10 @@ class EDA:
     #========__init__====================#
     #========initializes the EDA object =#
     def __init__(self):
+    
+        #initializes variables for NLP use later
+        self.stopwords_ = set(stopwords.words('english'))
+        self.punctuation_ = set(string.punctuation)
         pass
 
     
@@ -168,18 +173,16 @@ class EDA:
     #===========================NATURAL LANGUAGE PROCESSING==================#
     #TODO: can these be within a class without being in a definition?
     #TODO: add more complexity to take in other languages. maybe add definition?
-    stopwords_ = set(stopwords.words('english'))
-    punctuation_ = set(string.punctuation)
+
 
     #========filter_tokens filters out stop words ============#
     #========and punctuations from sentences =================#
     def filter_tokens(self, sent):
-        return([w for w in sent if not w in stopwords_ and not w in punctuation_])
+        return([w for w in sent if not w in self.stopwords_ and not w in self.punctuation_])
 
 
     #========remove_accents removes accents =================#
     #========from input string ==============================#
-    import unicodedata
     def remove_accents(self, input_str):
         nfkd_form = unicodedata.normalize('NFKD', input_str)
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
@@ -188,31 +191,37 @@ class EDA:
 
     #========personal_tokenize will remove accents, tokenize words, =====================================#
     #========filter stopwords and puncutations, and stem words; DEFAULT: ENGLISH, SNOWBALL STEMMER=======#
-    def personal_tokenize(self, sentence, language='english', stemmer='snowball'):
-        string = " "
+    def personal_tokenize(self, a_list, language='english', stemmer='snowball'):
+    
+        list_of_tokens = []
+        
+        for i in a_list:
+            string = " "
 
-        if stemmer=='snowball':
-            stemmer_snowball = SnowballStemmer(language)
+            if stemmer=='snowball':
+                stemmer_snowball = SnowballStemmer(language)
 
-        #remove accents
-        input_string = remove_accents(val)
+            #remove accents
+            input_string = self.remove_accents(i)
 
-        #tokenize
-        sent_tokens = sent_tokenize(input_string)
-        tokens = [sent for sent in map(word_tokenize, sent_tokens)]
-        tokens_lower = [[word.lower() for word in sent] for sent in tokens]
+            #tokenize
+            sent_tokens = sent_tokenize(input_string)
+            tokens = [sent for sent in map(word_tokenize, sent_tokens)]
+            tokens_lower = [[word.lower() for word in sent] for sent in tokens]
 
-        #filtering stopwords and punctuations
-        tokens_filtered = list(map(filter_tokens, tokens_lower))
-        tokens_filtered_list = list(itertools.chain.from_iterable(tokens_filtered))
+            #filtering stopwords and punctuations
+            tokens_filtered = list(map(self.filter_tokens, tokens_lower))
+            tokens_filtered_list = list(itertools.chain.from_iterable(tokens_filtered))
 
-        #stemming words
-        tokens_stemporter = [list(map(stemmer_snowball.stem, sent)) for sent in tokens_filtered]
-        return string.join(list(itertools.chain.from_iterable(tokens_stemporter)))
-
+            #stemming words
+            tokens_stemporter = [list(map(stemmer_snowball.stem, sent)) for sent in tokens_filtered]
+            list_of_tokens.append(string.join(list(itertools.chain.from_iterable(tokens_stemporter))))
+        
+        print(list_of_tokens)
+        return list_of_tokens
 
     #===========================MODELING===============================#
-    def calculate_threshold_values(prob, y):
+    def calculate_threshold_values(self, prob, y):
         '''
         Build dataframe of the various confusion-matrix ratios by threshold
         from a list of predicted probabilities and actual y values
@@ -233,16 +242,19 @@ class EDA:
         df['precision'] = df.tp/(df.tp + df.fp)
         df = df.reset_index(drop=True)
         return df
-
-    def plot_roc(ax, df, label="ROC"):
+    
+    def add_random_to_plot_roc(self, ax, label='random'):
+        ax.plot([0,1],[0,1], 'k', label="random")
+        ax.legend()
+    
+    def plot_roc(self, ax, df, label="ROC"):
         ax.plot([1]+list(df.fpr), [1]+list(df.tpr), label=label)
-    #     ax.plot([0,1],[0,1], 'k', label="random")
         ax.set_xlabel('fpr')
         ax.set_ylabel('tpr')
-    #     ax.set_title('ROC Curve')
-    #     ax.legend()
+        ax.set_title('ROC Curve')
+        ax.legend()
 
-    def modelling(X, y, model):
+    def modelling(self, X, y, model):
 
 #     X = vectorizer.fit_transform(text_series)
 
