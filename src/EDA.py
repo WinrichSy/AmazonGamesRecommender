@@ -217,7 +217,7 @@ class EDA:
             tokens_stemporter = [list(map(stemmer_snowball.stem, sent)) for sent in tokens_filtered]
             list_of_tokens.append(string.join(list(itertools.chain.from_iterable(tokens_stemporter))))
         
-        print(list_of_tokens)
+        
         return list_of_tokens
 
     #===========================MODELING===============================#
