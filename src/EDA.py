@@ -33,6 +33,8 @@ import unicodedata
 
 from scipy.sparse.linalg import svds
 
+from collections import Counter
+
 #from surprise import SVD, SVDpp, Slope
 
 warnings.filterwarnings('ignore')
@@ -280,4 +282,20 @@ class EDA:
         user_biz_predictions = u @ sigma @ vt + df.mean(axis=0).to_numpy()
         return s, user_biz_predictions
 
+    def remov_duplicates(self, input):
     
+      # split input string separated by space
+      input = input.split(" ")
+    
+      # joins two adjacent elements in iterable way
+      for i in range(0, len(input)):
+          input[i] = "".join(input[i])
+    
+      # now create dictionary using counter method
+      # which will have strings as key and their
+      # frequencies as value
+      UniqW = Counter(input)
+    
+      # joins two adjacent elements in iterable way
+      s = " ".join(UniqW.keys())
+      return s
