@@ -31,6 +31,10 @@ from nltk.stem.wordnet import WordNetLemmatizer
 from nltk import pos_tag
 import unicodedata
 
+from scipy.sparse.linalg import svds
+
+#from surprise import SVD, SVDpp, Slope
+
 warnings.filterwarnings('ignore')
 plt.style.use('ggplot')
 
@@ -169,7 +173,6 @@ class EDA:
     def year(self, series):
         return series.apply(lambda x: x.year)
 
-
     #===========================NATURAL LANGUAGE PROCESSING==================#
     #TODO: can these be within a class without being in a definition?
     #TODO: add more complexity to take in other languages. maybe add definition?
@@ -188,37 +191,32 @@ class EDA:
         only_ascii = nfkd_form.encode('ASCII', 'ignore')
         return only_ascii.decode()
 
-
     #========personal_tokenize will remove accents, tokenize words, =====================================#
     #========filter stopwords and puncutations, and stem words; DEFAULT: ENGLISH, SNOWBALL STEMMER=======#
-    def personal_tokenize(self, a_list, language='english', stemmer='snowball'):
-    
-        list_of_tokens = []
-        
-        for i in a_list:
-            string = " "
+    def personal_tokenize(self, sentence, language='english', stemmer='snowball'):
 
-            if stemmer=='snowball':
-                stemmer_snowball = SnowballStemmer(language)
-
-            #remove accents
-            input_string = self.remove_accents(i)
-
-            #tokenize
-            sent_tokens = sent_tokenize(input_string)
-            tokens = [sent for sent in map(word_tokenize, sent_tokens)]
-            tokens_lower = [[word.lower() for word in sent] for sent in tokens]
-
-            #filtering stopwords and punctuations
-            tokens_filtered = list(map(self.filter_tokens, tokens_lower))
-            tokens_filtered_list = list(itertools.chain.from_iterable(tokens_filtered))
-
-            #stemming words
-            tokens_stemporter = [list(map(stemmer_snowball.stem, sent)) for sent in tokens_filtered]
-            list_of_tokens.append(string.join(list(itertools.chain.from_iterable(tokens_stemporter))))
+        string = " "
+           
+        #configure stemmer
+        if stemmer=='snowball':
+            stemmer = SnowballStemmer(language)
         
         
-        return list_of_tokens
+        #remove accents
+        input_string = self.remove_accents(sentence)
+
+        #tokenize
+        sent_tokens = sent_tokenize(input_string)
+        tokens = [sent for sent in map(word_tokenize, sent_tokens)]
+        tokens_lower = [[word.lower() for word in sent] for sent in tokens]
+
+        #filtering stopwords and punctuations
+        tokens_filtered = list(map(self.filter_tokens, tokens_lower))
+        tokens_filtered_list = list(itertools.chain.from_iterable(tokens_filtered))
+
+        #stemming words
+        tokens_stemporter = [list(map(stemmer.stem, sent)) for sent in tokens_filtered]
+        return string.join(list(itertools.chain.from_iterable(tokens_stemporter)))
 
     #===========================MODELING===============================#
     def calculate_threshold_values(self, prob, y):
@@ -275,3 +273,11 @@ class EDA:
 
         return (precision, recall, accuracy, probs, roc_auc, thresh_df)
 #     return (probs, thres_df, roc_auc)
+
+    def svd_mat(self, df, k=10):
+        u, s, vt = svds(df, k)
+        sigma = np.diag(s)
+        user_biz_predictions = u @ sigma @ vt + df.mean(axis=0).to_numpy()
+        return s, user_biz_predictions
+
+    
