@@ -22,6 +22,7 @@ from sklearn.model_selection import train_test_split, KFold
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.feature_extraction.text import CountVectorizer, TfidfVectorizer
 from sklearn.metrics import precision_score, recall_score, accuracy_score, roc_auc_score
+from sklearn.decomposition import NMF, TruncatedSVD
 
 from nltk.corpus import stopwords
 from nltk.tokenize import word_tokenize, sent_tokenize
@@ -283,19 +284,49 @@ class EDA:
         return s, user_biz_predictions
 
     def remov_duplicates(self, input):
-    
-      # split input string separated by space
-      input = input.split(" ")
-    
-      # joins two adjacent elements in iterable way
-      for i in range(0, len(input)):
+        # split input string separated by space
+        input = input.split(" ")
+
+        # joins two adjacent elements in iterable way
+        for i in range(0, len(input)):
           input[i] = "".join(input[i])
+
+        # now create dictionary using counter method
+        # which will have strings as key and their
+        # frequencies as value
+        UniqW = Counter(input)
+
+        # joins two adjacent elements in iterable way
+        s = " ".join(UniqW.keys())
+        return s
+        
+    #==========
+    #=========
+    def TFIDF_model(self, tokens, model_type = 'svd'):
+        
+        self.vectorizer = TfidfVectorizer(stop_words = self.stopwords_, ngram_range = (1,1))
+        
+        doc_word = self.vectorizer.fit_transform(tokens)
+        
+        if model_type == 'svd':
+            self.svd = TruncatedSVD(8)
+            return self.svd.fit_transform(doc_word)
+        elif model_type == 'nmf':
+            self.nmf = NMF(8)
+            return self.nmf.fit_transform(doc_word)
+        else:
+            return
     
-      # now create dictionary using counter method
-      # which will have strings as key and their
-      # frequencies as value
-      UniqW = Counter(input)
     
-      # joins two adjacent elements in iterable way
-      s = " ".join(UniqW.keys())
-      return s
+
+    def display_topics(self, model, feature_names, no_top_words, no_top_topics, topic_names=None):
+        count = 0
+        for ix, topic in enumerate(model.components_):
+            if count == no_top_topics:
+                break
+            if not topic_names or not topic_names[ix]:
+                print("\nTopic ", (ix + 1))
+            else:
+                print("\nTopic: '",topic_names[ix],"'")
+            print(", ".join([feature_names[i] for i in topic.argsort()[:-no_top_words-1:-1]]))
+            count += 1
