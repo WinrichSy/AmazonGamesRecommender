@@ -7,8 +7,9 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 class Recommender_By_Users_Rating:
     def __init__(self):
-        self.pivoted_rating_table = pd.read_csv('../Data/recommender_rating_table.csv', index_col=0)
+        self.pivoted_rating_table = pd.read_csv('../Data/smaller_rating_table_25000.csv', index_col=0)
         self.asin_description = pd.read_csv('../Data/asin_description.csv', index_col=0)
+        self.asin_values = self.asin_description['asin'].unique().tolist()[:25000]
         pass
 
 
@@ -33,7 +34,7 @@ class Recommender_By_Users_Rating:
         elif similarity_type=='cosine similarity':
             similarity_calculator = cosine_similarity
 
-        for asin in rating_table.columns:
+        for asin in self.pivoted_rating_table.columns:
             if asin == asin_id:
                 continue
 

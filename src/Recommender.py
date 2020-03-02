@@ -18,7 +18,7 @@ if __name__ == '__main__':
 
         #Give User option to type in asin for recommendations based off ratings
         if user_input == '1':
-            # recommend_selection = recommender_by_users_rating.input_recommender()
+            recommend_selection = recommender_by_users_rating.input_recommender()
             if recommend_selection == 'quit' or recommend_selection == 'invalid':
                 continue
 
@@ -48,8 +48,9 @@ if __name__ == '__main__':
 
         #Give User option to quit recommneder program
         elif user_input == 'q' or 'Q':
-            print('Thank you for using my recommender. Have a Great Day! Bye!')
-            break
+            # print('Thank you for using my recommender. Have a Great Day! Bye!')
+            # break
+            print('For demo purposes, quitting the program is not available')
 
         else:
             print('============================')
