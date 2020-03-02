@@ -117,8 +117,21 @@ You will then be prompted with the following message:
 `Enter an asin (q to quit): `  
   
 Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
-`Enter an asin (q to quit): `
-
+`Enter an asin (q to quit): 0700026398`
+  
+Wait for the program to run, and then you'll get your recommendations!  
+```
+1. InterAct ShadowBlade Arcade Stick for PlayStation 2/PS One
+2. SWAT: Global Strike Team
+3. XBox Hulk Controller
+4. Wrath Unleashed
+5. NeverEnd - PC
+6. Bad Day LA - PC
+7. WII THE LEGEND OF ZELDA COLLECTIBLE TIN STARTER KIT
+8. Spider-Man: Web of Shadows - PC
+9. Dark Sector - PC
+10. G-Force - PC
+```
   
   
 #### Recommendations based on asin Description  
