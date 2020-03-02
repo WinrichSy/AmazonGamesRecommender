@@ -15,7 +15,6 @@ A Recommender system based of Video Games from Amazon.com
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3c. Top 10 Most Popular Product Types](#3c)<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3d. Number of Ratings Posted](#3d)<br>
 [4. Recommender](#Recommender)<br>
-[5. Conclusions](#Conclusions)<br>
 [6. Future Plans](#FuturePlans)<br>
 [7. Dependencies](#Dependencies)<br>
 [8. Contact](#Contact)<br>
@@ -90,11 +89,32 @@ A staggering amount of 1487366 reviews gave 5 stars. 311891 reviewers were gave 
 
 --
 ## <a id="Recommender">Recommender System</a>
+To run project:  
+```python Recommender.py```  
+This will take a while to run. (estimated 10 mins)
+  
+  
+Following will be prompted once it finishes compiling:
+```
+Please Enter a Number From the Following: 
+1. Recommendations based on asin rating
+2. Recommendations based on asin description
+3. Enter your own description
+(q to quit)
+Enter choice of number: 
+```  
+1 - Will allow you to enter a valid asin number. It will recommend other products that similar users rated and bought. If the asin is not valid, an error message will appear.
+  
+2 - Will allow you to enter a valid asin number. It will recommend other products similar to the asin's description. If the asin is not valid, an error message will appear.
+  
+3 - Will allow you to enter your own description and recommend products based on your description.
+
+#### Example.
+`Enter choice of number: 1`
+  
+`
 
 
----
-## <a id="Conclusions">Conclusions</a>
-In conclusion, recommending items is difficult.
 
 ---
 ## <a id="FuturePlans">Future Plans</a>
