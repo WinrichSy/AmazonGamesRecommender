@@ -33,11 +33,19 @@ http://deepyeti.ucsd.edu/jianmo/amazon/index.html
 ---
 ## <a id="EDA">Exploratory Data Analysis</a>
 ### <a id="3a">3a. </a>
+<p align="center"><img src="Graphs/1. Top 10 Popular Platforms.png"></p>
 
+<a id="3b">3b. Top 10 Popular Brands.png</a>
+<p align="center"><img src="Graphs/2. Top 10 Popular Brands.png"></p>
 
-<!--p align="center"><img src="AirBnb Capstone Graphs/6.2 ROC curve w_o verification dummies.png"></p>
+<a id="3c">3c. Top 10 Most Popular Product Types</a>
+<p align="center"><img src="Graphs/3. Top 10 Most Popular Product Types.png"></p>
 
-<p align="center"><img src="AirBnb Capstone Graphs/6.2 Values from Models w_o verification dummies.png"></p-->
+<a id="3d">3d. Number of Ratings Posted</a>
+<p align="center"><img src="Graphs/4. Number of Ratings Posted.png"></p>
+
+<a id="3e">3e. Number of Ratings Posted -need to fix-</a>
+<p align="center"><img src="Graphs/Number of Ratings Posted.png"></p>
 
 ---
 ## <a id="Conclusions">Conclusions</a>
