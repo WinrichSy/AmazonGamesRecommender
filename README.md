@@ -124,7 +124,7 @@ Entering q or Q will go back to the main menu. Inputing an invalid asin value wi
 #### Recommendations based on asin Description  
 `Enter choice of number: 2`  
   
-You will then be prompted with the following message:  
+You will then be prompted with the following message  
 `Enter an asin (q to quit): `  
   
 Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
@@ -147,10 +147,10 @@ Wait for the program to run, and then you'll get your recommendations!
 #### Recommendations based on own description
 `Enter choice of number: 3`  
   
-You will then be prompted with the following message:  
+You will then be prompted with the following message  
 `Enter a description: `  
   
-Input a nonempty description and   
+Input a nonempty description  
 `Enter a description: playstation 4 controllers`  
   
 Wait for the program to run, and then you'll get your recommendations!  
