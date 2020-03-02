@@ -1,10 +1,12 @@
 #Recommender
 from ColdStart import Cold_Start
 from RecommenderByDescription import Recommender_By_Description
+from RecommenderByUsersRating import Recommender_By_Users_Rating
 
 if __name__ == '__main__':
-    cold_start = Cold_Start()
+    recommender_by_users_rating = Recommender_By_Users_Rating()
     recommend_by_description = Recommender_By_Description()
+    cold_start = Cold_Start()
 
     while(True):
         print('Please Enter a Number From the Following: ')
@@ -16,15 +18,21 @@ if __name__ == '__main__':
 
         #Give User option to type in asin for recommendations based off ratings
         if user_input == '1':
-            #do first recommender
-            pass
+            recommend_selection = recommender_by_users_rating.input_recommender()
+            if recommend_selection == 'quit' or recommend_selection == 'invalid':
+                continue
+
+            for idx, val in enumerate(recommend_selection):
+                print(str(idx+1)+": "+val)
+            print('Hope you enjoy the selection!')
+            print('')
 
         #Give User option to type in asin for recommendations based off descriptions
         elif user_input == '2':
             recommend_selection = recommend_by_description.input_recommender()
             if recommend_selection == 'quit' or recommend_selection == 'invalid':
                 continue
-                
+
             for idx, val in enumerate(recommend_selection):
                 print(str(idx+1)+": "+val)
             print('Hope you enjoy the selection!')

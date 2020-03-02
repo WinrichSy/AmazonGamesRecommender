@@ -1,4 +1,4 @@
-#Cold Start [Evaluating User's Own Description Input]
+#Recommender by item description
 from EDA import EDA
 import pandas as pd
 import numpy as np
