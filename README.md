@@ -1,6 +1,8 @@
 # **Amazon Games Recommender**  
 <p align="center"><img src="AmazonLogo.png"></p>
+
 ## Description  
+
 A Recommender system based of Video Games from Amazon.com
 
 ## Table of Contents
@@ -29,39 +31,34 @@ http://deepyeti.ucsd.edu/jianmo/amazon/index.html
 
 ### <a id="data">2a. About the Data</a>
 meta_Video_Games.json:  
-(84893 Rows, 17 Columns):  
-|- category 
-|- title         84879 non-null  object  
-|- image         62004 non-null  object  
-|- brand         80863 non-null  object  
-|- rank          80383 non-null  object  
-|- main_cat      84727 non-null  object  
-|- asin          84893 non-null  object  
-|- description   74723 non-null  object  
-|- also_buy      35420 non-null  object  
-|- also_view     45081 non-null  object  
-|- price         15555 non-null  object  
-|- feature       61932 non-null  object  
-|- date          8273 non-null   object  
-|- tech1         2847 non-null   object  
-|- details       2261 non-null   object  
-|- similar_item  281 non-null    object  
-|- tech2         234 non-null    object  
+(84893 Rows, 12 Columns):  
+|- category  
+|- title         
+|- image          
+|- brand         
+|- rank          
+|- main_cat      
+|- asin          
+|- description   
+|- also_buy        
+|- also_view       
+|- price           
+|- feature            
   
 Video_Games.json:  
 (2565349 Rows, 12 Columns):
-|- overall         int64 
-|- verified        bool  
-|- reviewTime      object
-|- reviewerID      object
-|- asin            object
-|- reviewerName    object
-|- reviewText      object
-|- summary         object
-|- unixReviewTime  int64 
-|- vote            object
-|- style           object
-|- image           object
+|- overall          
+|- verified          
+|- reviewTime      
+|- reviewerID      
+|- asin            
+|- reviewerName    
+|- reviewText      
+|- summary         
+|- unixReviewTime   
+|- vote            
+|- style           
+|- image           
  
 ---
 ## <a id="EDA">Exploratory Data Analysis</a>
