@@ -85,4 +85,4 @@ class Cold_Start:
 
         else:
             print('We recommend you try some of these products!')
-            print(self.recommendations_by_user_input(input_product_tokenized))
+            return self.recommendations_by_user_input(input_product_tokenized)
