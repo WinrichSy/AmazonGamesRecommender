@@ -43,7 +43,7 @@ meta_Video_Games.json:
 |- feature            
 
 Video_Games.json:  
-(2565349 Rows, 12 Columns):
+(2565349 Rows, 12 Columns):  
 |- overall          
 |- verified          
 |- reviewTime      
