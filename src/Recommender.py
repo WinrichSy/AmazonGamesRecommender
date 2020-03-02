@@ -1,8 +1,10 @@
 #Recommender
 from ColdStart import Cold_Start
+from RecommenderByDescription import Recommender_By_Description
 
 if __name__ == '__main__':
     cold_start = Cold_Start()
+    recommend_by_description = Recommender_By_Description()
 
     while(True):
         print('Please Enter a Number From the Following: ')
@@ -12,20 +14,31 @@ if __name__ == '__main__':
         print('(q to quit)')
         user_input = str(input('Enter choice of number: '))
 
+        #Give User option to type in asin for recommendations based off ratings
         if user_input == '1':
             #do first recommender
             pass
 
+        #Give User option to type in asin for recommendations based off descriptions
         elif user_input == '2':
-            pass
-
-        elif user_input == '3':
-            cold_start_selection = cold_start.input_recommender()
-            for idx, val in enumerate(cold_start_selection):
+            recommend_selection = recommend_by_description.input_recommender()
+            if recommend_selection == 'quit' or recommend_selection == 'invalid':
+                continue
+                
+            for idx, val in enumerate(recommend_selection):
                 print(str(idx+1)+": "+val)
             print('Hope you enjoy the selection!')
             print('')
 
+        #Give User the option to type in own description [in testing]
+        elif user_input == '3':
+            recommend_selection = recommend_by_description.input_recommender()
+            for idx, val in enumerate(recommend_selection):
+                print(str(idx+1)+": "+val)
+            print('Hope you enjoy the selection!')
+            print('')
+
+        #Give User option to quit recommneder program
         elif user_input == 'q' or 'Q':
             print('Thank you for using my recommender. Have a Great Day! Bye!')
             break
