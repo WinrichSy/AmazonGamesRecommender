@@ -15,9 +15,9 @@ A Recommender system based of Video Games from Amazon.com
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3c. Top 10 Most Popular Product Types](#3c)<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3d. Number of Ratings Posted](#3d)<br>
 [4. Recommender](#Recommender)<br>
-[6. Future Plans](#FuturePlans)<br>
-[7. Dependencies](#Dependencies)<br>
-[8. Contact](#Contact)<br>
+[5. Future Plans](#FuturePlans)<br>
+[6. Dependencies](#Dependencies)<br>
+[7. Contact](#Contact)<br>
 
 ## <a id="Background&Motivation">Background & Motivation</a>
 The video game industry is valued at billions of dollars and is expected to be worth over 90 billion USD within 2020. The world is estimated to have more than 2.5 billion video gamers and is expected to grow even more. With so many types of consoles, videogames, and accessories, there are so many products to choose from. With data of videogames and their reviews from Amazon, I wanted to create a recommender that would help gamers and enthusaists find products that would be similar to their preferences. Developing a recommender in hopes to encourage more sales and enjoyment for both sellers and buyers is my main goal.
@@ -112,8 +112,10 @@ Enter choice of number:
 ### Examples
 #### Recommendations based on asin Ratings
 `Enter choice of number: 1`  
-You will then be prompted with the following message:
+  
+You will then be prompted with the following message:  
 `Enter an asin (q to quit): `  
+  
 Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
 `Enter an asin (q to quit): `
 
@@ -121,21 +123,27 @@ Entering q or Q will go back to the main menu. Inputing an invalid asin value wi
   
 #### Recommendations based on asin Description  
 `Enter choice of number: 2`  
+  
 You will then be prompted with the following message:  
 `Enter an asin (q to quit): `  
+  
 Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
 `Enter an asin (q to quit): `  
   
   
 #### Recommendations based on own description
 `Enter choice of number: 3`  
+  
 You will then be prompted with the following message:  
 `Enter a description: `  
+  
 Input a nonempty description and   
 `Enter a description: playstation 4 controllers`  
+  
 Wait for the program to run, and then you'll get your recommendations!  
   
-
+  
+-------------
 This recommender has an RMSE of 1.03
 
 Thank you for taking a look at my recommender! If you enjoyed this project or have any questions, feel free to [contact me!](#Contact)
