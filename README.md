@@ -130,6 +130,19 @@ You will then be prompted with the following message:
 Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
 `Enter an asin (q to quit): `  
   
+Wait for the program to run, and then you'll get your recommendations!
+```
+1. Rally Championship - Pc Electronic Arts Games Game
+2. Survival: The Ultimate Challenge - Pc Activision Games
+3. Dungeon Keeper 2 Electronic Arts Pc Games
+4. Dragon'S Challenge - Pc Expert Software Games
+5. Crysis Pc Electronic Arts The Original Game
+6. Galaxy Of Games Pc
+7. Israeli Air Force - Pc Electronic Arts Games
+8. Hellgate: London Electronic Arts Pc Dvd Games
+9. Jane'S Attack Pack - Pc Electronic Arts Jane
+10. Need For Speed Most Wanted Pc Electronic Arts Games
+```
   
 #### Recommendations based on own description
 `Enter choice of number: 3`  
@@ -141,7 +154,18 @@ Input a nonempty description and
 `Enter a description: playstation 4 controllers`  
   
 Wait for the program to run, and then you'll get your recommendations!  
-  
+```
+1. Toy Story Racer Activision While Andy'S Away
+2. Crash Bandicoot Action Pack - Playstation 2
+3. Danny Phantom: The Ultimate Enemy Thq Future
+4. Taito Legends - Xbox Empire Interactive 29
+5. Call Of Duty 4: Modern Warfare Activision
+6. Justice League Heroes - Sony Psp Warner
+7. Power Replay Game Enhancer ~ Playstation Cheat
+8. Buttkicker Weight-Rated Kinetics Isolator (Discontinued By Manufacturer)
+9. Super Robots Wars A (Japanese Import Video)
+10. Ncaa Football 2007 - Xbox Electronic Arts
+```
   
 -------------
 This recommender has an RMSE of 1.03
