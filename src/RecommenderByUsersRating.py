@@ -8,8 +8,7 @@ from sklearn.feature_extraction.text import CountVectorizer
 class Recommender_By_Users_Rating:
     def __init__(self):
         self.pivoted_rating_table = pd.read_csv('../Data/recommender_rating_table.csv', index_col=0)
-        simple_videogames = pd.read_csv('../Data/simple_videogames.csv', index_col=0)
-        self.asin_description = simple_videogames[['asin','description']]
+        self.asin_description = pd.read_csv('../Data/asin_description.csv', index_col=0)
         pass
 
 
@@ -24,7 +23,7 @@ class Recommender_By_Users_Rating:
     #===GET_RECS=====
     #===Gets num top recommendations based on asin_id
     #TODO: add cosine similarity
-    def get_recs(self, asin_id, rating_table, num, similarity_type='pearson', show_correlation=False):
+    def get_recs(self, asin_id, similarity_type='pearson', show_correlation=False):
         recommendations = []
         #Pearson Similarity
         if similarity_type=='pearson':
@@ -38,7 +37,9 @@ class Recommender_By_Users_Rating:
             if asin == asin_id:
                 continue
 
-            cor = similarity_calculator(rating_table[asin_id], rating_table[asin])
+            # cor = similarity_calculator(self.pivoted_rating_table[asin_id], self.pivoted_rating_table[asin])
+            cor = self.pearson(self.pivoted_rating_table[asin_id], self.pivoted_rating_table[asin])
+
 
             #checks if the correlation is nan; if so, then continue
             if np.isnan(cor):
@@ -50,7 +51,7 @@ class Recommender_By_Users_Rating:
                     recommendations.append(asin)
 
         recommendations.sort(key=lambda tup: tup[1], reverse=True)
-        recommendations = recommendatsion[:num]
+        recommendations = recommendatsion[:11]
 
         recommendation_list = self.asin_description[self.asin_description['asin'].isin(recommendations)]['description'].tolist()
         shortened_recommendation_description = []
@@ -77,4 +78,4 @@ class Recommender_By_Users_Rating:
 
         else:
             print('We recommend you try some of these products!')
-            return self.get_recs(asin_id, rating_table, 10)
+            return self.get_recs(user_input)
