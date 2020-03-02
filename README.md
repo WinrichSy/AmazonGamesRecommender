@@ -1,6 +1,6 @@
-# **Amazon Games Recommender**  
 <p align="center"><img src="AmazonLogo.png"></p>
 
+# **Amazon Games Recommender**  
 ## Description  
 
 A Recommender system based of Video Games from Amazon.com
@@ -109,11 +109,36 @@ Enter choice of number:
   
 3 - Will allow you to enter your own description and recommend products based on your description.
 
-#### Example.
-`Enter choice of number: 1`
-  
-`
+### Examples
+#### Recommendations based on asin Ratings
+`Enter choice of number: 1`  
+You will then be prompted with the following message:
+`Enter an asin (q to quit): `  
+Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
+`Enter an asin (q to quit): `
 
+  
+  
+#### Recommendations based on asin Description  
+`Enter choice of number: 2`  
+You will then be prompted with the following message:  
+`Enter an asin (q to quit): `  
+Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
+`Enter an asin (q to quit): `  
+  
+  
+#### Recommendations based on own description
+`Enter choice of number: 3`  
+You will then be prompted with the following message:  
+`Enter a description: `  
+Input a nonempty description and   
+`Enter a description: playstation 4 controllers`  
+Wait for the program to run, and then you'll get your recommendations!  
+  
+
+This recommender has an RMSE of 1.03
+
+Thank you for taking a look at my recommender! If you enjoyed this project or have any questions, feel free to [contact me!](#Contact)
 
 
 ---
