@@ -15,15 +15,13 @@ A Recommender system based of Video Games from Amazon.com
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3c. Top 10 Most Popular Product Types](#3c)<br>
     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[3d. Number of Ratings Posted](#3d)<br>
 [4. Recommender](#Recommender)<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4a. ](#4a)<br>
-    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;[4b. ](#4b)<br>
 [5. Conclusions](#Conclusions)<br>
 [6. Future Plans](#FuturePlans)<br>
 [7. Dependencies](#Dependencies)<br>
 [8. Contact](#Contact)<br>
 
 ## <a id="Background&Motivation">Background & Motivation</a>
-The video game industry is valued at billions of dollars and is expected to be worth over 90 billion USD within 2020. The world is estimated to have more than 2.5 billion video gamers and is expected to grow even more. With so many types of consoles, videogames, and accessories, there are so many products to choose from. With data of videogames and their reviews from Amazon, I wanted to create a recommender that would help gamers and enthusaists find products that would be similar to their preferences. Developing a recommender in hopes to encourage more sales and enjoyment for both sellers and buyers is my main goal. 
+The video game industry is valued at billions of dollars and is expected to be worth over 90 billion USD within 2020. The world is estimated to have more than 2.5 billion video gamers and is expected to grow even more. With so many types of consoles, videogames, and accessories, there are so many products to choose from. With data of videogames and their reviews from Amazon, I wanted to create a recommender that would help gamers and enthusaists find products that would be similar to their preferences. Developing a recommender in hopes to encourage more sales and enjoyment for both sellers and buyers is my main goal.
 
 ---
 ## <a id="DataSource">DataSource</a>
@@ -44,7 +42,7 @@ meta_Video_Games.json:
 |- also_view       
 |- price           
 |- feature            
-  
+
 Video_Games.json:  
 (2565349 Rows, 12 Columns):
 |- overall          
@@ -59,14 +57,14 @@ Video_Games.json:
 |- vote            
 |- style           
 |- image           
- 
+
 ---
 ## <a id="EDA">Exploratory Data Analysis</a>
 ### <a id="3a">3a. Top 10 Popular Platforms</a>
 
-PC games and accessories are very prominent in Amazon's marketplace. With 23288 items 
-specifically for PC, and only 3517 items specifically for the Wii. 3567 items we not given a 
-specific description on which console their item is for. 
+PC games and accessories are very prominent in Amazon's marketplace. With 23288 items
+specifically for PC, and only 3517 items specifically for the Wii. 3567 items we not given a
+specific description on which console their item is for.
 <p align="center"><img src="Graphs/1. Top 10 Popular Platforms.png"></p>
 
 
@@ -91,25 +89,25 @@ A staggering amount of 1487366 reviews gave 5 stars. 311891 reviewers were gave 
 <p align="center"><img src="Graphs/Number of Ratings Posted.png"></p-->
 
 --
-## <a id="Recommender">Recommeder System</a>
-### <a id="3a">3a. </a>
+## <a id="Recommender">Recommender System</a>
+
 
 ---
 ## <a id="Conclusions">Conclusions</a>
-In conclusion, recommending items based on 
+In conclusion, recommending items is difficult.
 
 ---
 ## <a id="FuturePlans">Future Plans</a>
 1. Find a better way to handle cold starts.
-2. Creat a flask app to have project on
+2. Create a flask app to have project on
 
 ---
 ## <a id="Dependencies">Dependencies</a>
-Python, 
-Pandas, 
-Matplotlib, 
-scikit-learn, 
-surprise, 
+Python,
+Pandas,
+Matplotlib,
+scikit-learn,
+surprise,
 Jupyter Notebook
 
 ---
@@ -117,5 +115,3 @@ Jupyter Notebook
 Feel free to contact me about any questions. I can be reached through these links.  
 [LinkedIn](https://www.linkedin.com/in/winrichsy/)  
 [Email](winrichsy@gmail.com)  
-  
-version 1.0 - EDA on Superhosts on Airbnb, number of listings available, average pricing. 
