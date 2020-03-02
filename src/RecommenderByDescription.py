@@ -55,7 +55,6 @@ class Recommender_By_Description:
         score_series = pd.Series(self.vg_cosine_sim[idx]).sort_values(ascending = False)
 
         top_10_indexes = list(score_series.iloc[1:11].index)
-        print(top_10_indexes)
         seperator = ' '
         for i in top_10_indexes:
             product_description = self.replace_asin_with_description(list(self.videogame_description_table.index)[i])

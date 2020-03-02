@@ -8,13 +8,13 @@ from sklearn.feature_extraction.text import CountVectorizer
 class Recommender_By_Users_Rating:
     def __init__(self):
         self.pivoted_rating_table = pd.read_csv('../Data/smaller_rating_table_25000.csv', index_col=0)
-        self.asin_description = pd.read_csv('../Data/asin_description.csv', index_col=0)
-        self.asin_values = self.asin_description['asin'].unique().tolist()[:25000]
+        self.asin_title = pd.read_csv('../Data/asin_title.csv', index_col=0)
+        self.asin_values = self.asin_title['asin'].unique().tolist()[:25000]
         pass
 
 
     def replace_asin(self, x):
-        return simple_videogames[simple_videogames['asin']==x]['description'].value[0]
+        return simple_videogames[simple_videogames['asin']==x]['title'].value[0]
 
     def pearson(self, s1, s2):
         s1_c = s1-s1.mean()
@@ -52,14 +52,15 @@ class Recommender_By_Users_Rating:
                     recommendations.append(asin)
 
         recommendations.sort(key=lambda tup: tup[1], reverse=True)
-        recommendations = recommendatsion[:11]
+        recommendations = recommendations[:10]
 
-        recommendation_list = self.asin_description[self.asin_description['asin'].isin(recommendations)]['description'].tolist()
-        shortened_recommendation_description = []
-        separator = ' '
-        for i in recommendation_list:
-            shortened_recommendation_description.append(separator.join(shortened_recommendation_description.split()[:10]))
-        return shortened_recommendation_description
+        recommendation_list = self.asin_title[self.asin_title['asin'].isin(recommendations)]['title'].tolist()
+        # shortened_recommendation_description = []
+        # separator = ' '
+        # for i in recommendation_list:
+        #     shortened_recommendation_description.append(i)
+        # return shortened_recommendation_description
+        return recommendation_list
 
     #===INPUT_RECOMMENDER
     #===Asks for input from user

@@ -76,7 +76,7 @@ class Cold_Start:
     #===INPUT_RECOMMENDER
     #===Asks for input from user
     def input_recommender(self):
-        input_product = input("Enter a product: ")
+        input_product = input("Enter a description: ")
         input_product_tokenized = self.eda.personal_tokenize(self.eda.remov_duplicates(input_product.lower()))
 
         if len(input_product_tokenized) == 0:
