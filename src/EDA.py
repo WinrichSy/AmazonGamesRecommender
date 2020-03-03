@@ -45,13 +45,13 @@ class EDA:
     #========__init__====================#
     #========initializes the EDA object =#
     def __init__(self):
-    
+
         #initializes variables for NLP use later
         self.stopwords_ = set(stopwords.words('english'))
         self.punctuation_ = set(string.punctuation)
         pass
 
-    
+
     #========AUTOLABEL takes in rect objects from ===========================#
     #========subplots and output their numerical values on top of BAR PLOTS =#
     def autolabel(self, rects, ax, orientation='vert'):
@@ -104,21 +104,21 @@ class EDA:
     #========print_bar=====================================#
     #========Print functions for bar graphs specifically ==#
     def print_bar(self, x, y, x_label, y_label, title='insert title', orientation='vert', color='blue',
-                  width=0.65, fig_size=(23,7), percentage=False, weight='bold', tick_size=20, title_size=30):
-    
+                  width=0.65, fig_size=(12,7), percentage=False, weight='bold', tick_size=20, title_size=30):
+
         fig, ax = plt.subplots(figsize=fig_size)
         if orientation=='vert':
             bars_for_annotation = ax.bar(x, y, color=color, align='center', width=width)
         elif orientation=='hort':
             bars_for_annotation = ax.barh(x, y, color=color, align='center')
-            
-        
+
+
         plt.xticks(size = 13)
         plt.yticks(size = 15)
-        plt.xlabel(x_label, size=tick_size, color=color)
-        plt.ylabel(y_label, size=tick_size, color=color)
+        plt.xlabel(x_label, size=tick_size, color=color, weight='bold')
+        plt.ylabel(y_label, size=tick_size, color=color, weight='bold')
         plt.title(title, fontsize=title_size, color=color)
-    
+
         if percentage:
             self.autolabel_percent(bars_for_annotation, ax, orientation=orientation)
         elif not percentage:
@@ -199,12 +199,12 @@ class EDA:
     def personal_tokenize(self, sentence, language='english', stemmer='snowball'):
 
         string = " "
-           
+
         #configure stemmer
         if stemmer=='snowball':
             stemmer = SnowballStemmer(language)
-        
-        
+
+
         #remove accents
         input_string = self.remove_accents(sentence)
 
@@ -243,11 +243,11 @@ class EDA:
         df['precision'] = df.tp/(df.tp + df.fp)
         df = df.reset_index(drop=True)
         return df
-    
+
     def add_random_to_plot_roc(self, ax, label='random'):
         ax.plot([0,1],[0,1], 'k', label="random")
         ax.legend()
-    
+
     def plot_roc(self, ax, df, label="ROC"):
         ax.plot([1]+list(df.fpr), [1]+list(df.tpr), label=label)
         ax.set_xlabel('fpr')
@@ -299,15 +299,15 @@ class EDA:
         # joins two adjacent elements in iterable way
         s = " ".join(UniqW.keys())
         return s
-        
+
     #==========
     #=========
     def TFIDF_model(self, tokens, model_type = 'svd'):
-        
+
         self.vectorizer = TfidfVectorizer(stop_words = self.stopwords_, ngram_range = (1,1))
-        
+
         doc_word = self.vectorizer.fit_transform(tokens)
-        
+
         if model_type == 'svd':
             self.svd = TruncatedSVD(8)
             return self.svd.fit_transform(doc_word)
@@ -316,8 +316,8 @@ class EDA:
             return self.nmf.fit_transform(doc_word)
         else:
             return
-    
-    
+
+
 
     def display_topics(self, model, feature_names, no_top_words, no_top_topics, topic_names=None):
         count = 0

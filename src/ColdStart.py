@@ -16,9 +16,7 @@ class Cold_Start:
         #instantiate and EDA object
         self.eda = EDA()
         #Load full videogame
-        self.simple_videogames = pd.read_csv('../Data/simple_videogames.csv', index_col = 0)
-        self.simple_videogames.drop(columns=['Unnamed: 0.1','rank','platform','rating'],inplace=True)
-        self.simple_videogames.fillna("", inplace=True)
+        self.asin_title = pd.read_csv('../Data/asin_title.csv', index_col = 0)
         pass
 
     #======RECOMMENDATIONS BY USER INPUT:
@@ -64,7 +62,7 @@ class Cold_Start:
     #===REPLACE ASIN WITH DESCRIPTION
     #===Replaces asin values with their corresponding description
     def replace_asin_with_description(self, asin):
-        return (self.eda.remov_duplicates(self.simple_videogames.iloc[[asin]]['description'].item().title()))
+        return (self.eda.remov_duplicates(self.asin_title.iloc[[asin]]['title'].item().title()))
 
     #===TOP 10
     #===Retuns top 10 items from database

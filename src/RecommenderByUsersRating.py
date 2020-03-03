@@ -7,60 +7,41 @@ from sklearn.feature_extraction.text import CountVectorizer
 
 class Recommender_By_Users_Rating:
     def __init__(self):
-        self.pivoted_rating_table = pd.read_csv('../Data/smaller_rating_table_25000.csv', index_col=0)
         self.asin_title = pd.read_csv('../Data/asin_title.csv', index_col=0)
-        self.asin_values = self.asin_title['asin'].unique().tolist()[:25000]
+        self.item_similarity = np.load('../Data/item_similarity.npy')
+        self.asin_values = self.asin_title['asin'].unique()
         pass
 
 
     def replace_asin(self, x):
         return simple_videogames[simple_videogames['asin']==x]['title'].value[0]
 
-    def pearson(self, s1, s2):
-        s1_c = s1-s1.mean()
-        s2_c = s2-s2.mean()
-        return np.sum(s1_c * s2_c)/np.sqrt(np.sum(s1_c**2)*np.sum(s2_c**2))
+    # def pearson(self, s1, s2):
+    #     s1_c = s1-s1.mean()
+    #     s2_c = s2-s2.mean()
+    #     return np.sum(s1_c * s2_c)/np.sqrt(np.sum(s1_c**2)*np.sum(s2_c**2))
 
     #===GET_RECS=====
     #===Gets num top recommendations based on asin_id
-    #TODO: add cosine similarity
-    def get_recs(self, asin_id, similarity_type='pearson', show_correlation=False):
-        recommendations = []
-        #Pearson Similarity
-        if similarity_type=='pearson':
-            similarity_calculator = self.pearson
+    def get_recs(self, asin, show_correlation=False):
+        #then get the indices of it
+        indices = pd.Series(self.asin_title['asin'])
+        #initialize new list of things to recommend
+        recommended_items = []
+        #indices == 0 because it is 0 (because of temp df)
+        idx = indices[indices == asin].index[0]
 
-        #Cosine Similarity
-        elif similarity_type=='cosine similarity':
-            similarity_calculator = cosine_similarity
+        #get scores based on consine similarity
+        score_series = pd.Series(self.item_similarity[int(idx)]).sort_values(ascending = False)
 
-        for asin in self.pivoted_rating_table.columns:
-            if asin == asin_id:
-                continue
+        other_recommended =[]
+        top_10_indexes = score_series.iloc[1:11].index
+        for i in top_10_indexes:
+            product_title_asin = list(self.asin_title.index)[i]
+            recommended_items.append(self.asin_title.iloc[int(product_title_asin), 0])
 
-            # cor = similarity_calculator(self.pivoted_rating_table[asin_id], self.pivoted_rating_table[asin])
-            cor = self.pearson(self.pivoted_rating_table[asin_id], self.pivoted_rating_table[asin])
+        return recommended_items#, other_recommended
 
-
-            #checks if the correlation is nan; if so, then continue
-            if np.isnan(cor):
-                continue
-            else:
-                if show_correlation:
-                    recommendations.append((asin, cor))
-                else:
-                    recommendations.append(asin)
-
-        recommendations.sort(key=lambda tup: tup[1], reverse=True)
-        recommendations = recommendations[:10]
-
-        recommendation_list = self.asin_title[self.asin_title['asin'].isin(recommendations)]['title'].tolist()
-        # shortened_recommendation_description = []
-        # separator = ' '
-        # for i in recommendation_list:
-        #     shortened_recommendation_description.append(i)
-        # return shortened_recommendation_description
-        return recommendation_list
 
     #===INPUT_RECOMMENDER
     #===Asks for input from user
@@ -79,5 +60,6 @@ class Recommender_By_Users_Rating:
             return 'invalid'
 
         else:
+            # print('asin: ' + user_input, self.asin_title[self.asin_title['asin']==user_input]['title'])
             print('We recommend you try some of these products!')
             return self.get_recs(user_input)

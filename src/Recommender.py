@@ -1,7 +1,7 @@
 #Recommender
-from ColdStart import Cold_Start
-from RecommenderByDescription import Recommender_By_Description
 from RecommenderByUsersRating import Recommender_By_Users_Rating
+from RecommenderByDescription import Recommender_By_Description
+from ColdStart import Cold_Start
 
 if __name__ == '__main__':
     recommender_by_users_rating = Recommender_By_Users_Rating()
@@ -40,7 +40,7 @@ if __name__ == '__main__':
 
         #Give User the option to type in own description [in testing]
         elif user_input == '3':
-            recommend_selection = recommend_by_description.input_recommender()
+            recommend_selection = cold_start.input_recommender()
             for idx, val in enumerate(recommend_selection):
                 print(str(idx+1)+": "+val)
             print('Hope you enjoy the selection!')
@@ -51,6 +51,7 @@ if __name__ == '__main__':
             # print('Thank you for using my recommender. Have a Great Day! Bye!')
             # break
             print('For demo purposes, quitting the program is not available')
+            print('')
 
         else:
             print('============================')
