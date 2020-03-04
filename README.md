@@ -91,94 +91,70 @@ A staggering amount of 1487366 reviews gave 5 stars. 311891 reviewers were gave 
 ## <a id="Recommender">Recommender System</a>
 To run project:  
 ```python Recommender.py```  
-This will take a while to run. (estimated 10 mins)
-  
-  
-Following will be prompted once it finishes compiling:
-```
-Please Enter a Number From the Following: 
-1. Recommendations based on asin rating
-2. Recommendations based on asin description
-3. Enter your own description
-(q to quit)
-Enter choice of number: 
-```  
-1 - Will allow you to enter a valid asin number. It will recommend other products that similar users rated and bought. If the asin is not valid, an error message will appear.
-  
-2 - Will allow you to enter a valid asin number. It will recommend other products similar to the asin's description. If the asin is not valid, an error message will appear.
-  
-3 - Will allow you to enter your own description and recommend products based on your description.
 
-### Examples
-#### Recommendations based on asin Ratings
-`Enter choice of number: 1`  
-  
-You will then be prompted with the following message:  
-`Enter an asin (q to quit): `  
-  
-Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
-`Enter an asin (q to quit): 0700026398`
-  
-Wait for the program to run, and then you'll get your recommendations!  
+Project menu will look like this:
 ```
-1. InterAct ShadowBlade Arcade Stick for PlayStation 2/PS One
-2. SWAT: Global Strike Team
-3. XBox Hulk Controller
-4. Wrath Unleashed
-5. NeverEnd - PC
-6. Bad Day LA - PC
-7. WII THE LEGEND OF ZELDA COLLECTIBLE TIN STARTER KIT
-8. Spider-Man: Web of Shadows - PC
-9. Dark Sector - PC
-10. G-Force - PC
+       ===========================================
+       ****** AMAZON VIDEO GAME RECOMMENDER ******
+       ============= by Winrich Sy ===============
+                                                            
+Please Enter a Number From the Following: 
+[1] - ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING
+[2] - ASIN RECOMMENDATIONS THROUGH CONTENT BASED
+(q to quit)
+
+Enter choice of number:
 ```
+Entering 1 will give recommendations of asin based off collaborative filtering from users' ratings.  
+Entering 2 will give recommendations of asin based off products' descriptions.  
+  
+#### 1 - ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING
+`Enter choice of number: 1` 
+  
+Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 5 recommended itmes for you. For our example, we'll use 'B00002STX0'.
+  
+```
+********************************************************
+[1] ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING
+********************************************************
+Enter an asin (q to quit): 0042000742
+
+Here are some recommendations!
+------------------------------
+1: The Movies: Superstar Edition [Mac Download]
+2: Littlest Pet Shop 3 Biggest Stars Purple Team Game DS
+3: Retro Bit Nintendo NES Entertainment System (Silver/Black)
+4: RED Nunchuck and Remote Controller For Nintendo Wii
+5: PS VITA Trooper Pack [Yellow] [Made in JAPAN]
+
+Enter anything to continue
+```   
+Press enter to go back to main menu
   
   
-#### Recommendations based on asin Description  
+#### 2 - ASIN RECOMMENDATIONS THROUGH CONTENT BASED 
 `Enter choice of number: 2`  
   
-You will then be prompted with the following message  
-`Enter an asin (q to quit): `  
+Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 5 recommended itmes for you. For our example, we'll use 'B00002STX0'.
   
-Entering q or Q will go back to the main menu. Inputing an invalid asin value will output an wanring message and return back to the main menu. Inputting a valid asin will return top 10 recommended itmes for you.  
-`Enter an asin (q to quit): `  
-  
-Wait for the program to run, and then you'll get your recommendations!
 ```
-1. Rally Championship - Pc Electronic Arts Games Game
-2. Survival: The Ultimate Challenge - Pc Activision Games
-3. Dungeon Keeper 2 Electronic Arts Pc Games
-4. Dragon'S Challenge - Pc Expert Software Games
-5. Crysis Pc Electronic Arts The Original Game
-6. Galaxy Of Games Pc
-7. Israeli Air Force - Pc Electronic Arts Games
-8. Hellgate: London Electronic Arts Pc Dvd Games
-9. Jane'S Attack Pack - Pc Electronic Arts Jane
-10. Need For Speed Most Wanted Pc Electronic Arts Games
-```
+***********************************************
+[2] ASIN RECOMMENDATIONS THROUGH CONTENT BASED
+***********************************************
+Enter an asin (q to quit): B00002STX0
+
+Here are some recommendations!
+------------------------------
+1: The Last Bounty Hunter
+2: Super Nintendo Jurassic Park
+3: Xbox 360 Gameface
+4: Playstation 3 Cordless Mediaboard Keyboard
+5: James Bond 007: Game Boy
+
+Enter anything to continue
+```   
+Press enter to go back to main menu
   
-#### Recommendations based on own description
-`Enter choice of number: 3`  
-  
-You will then be prompted with the following message  
-`Enter a description: `  
-  
-Input a nonempty description  
-`Enter a description: playstation 4 controllers`  
-  
-Wait for the program to run, and then you'll get your recommendations!  
-```
-1. Toy Story Racer Activision While Andy'S Away
-2. Crash Bandicoot Action Pack - Playstation 2
-3. Danny Phantom: The Ultimate Enemy Thq Future
-4. Taito Legends - Xbox Empire Interactive 29
-5. Call Of Duty 4: Modern Warfare Activision
-6. Justice League Heroes - Sony Psp Warner
-7. Power Replay Game Enhancer ~ Playstation Cheat
-8. Buttkicker Weight-Rated Kinetics Isolator (Discontinued By Manufacturer)
-9. Super Robots Wars A (Japanese Import Video)
-10. Ncaa Football 2007 - Xbox Electronic Arts
-```
   
 -------------
 This recommender has an RMSE of 1.03
@@ -205,3 +181,4 @@ Jupyter Notebook
 Feel free to contact me about any questions. I can be reached through these links.  
 [LinkedIn](https://www.linkedin.com/in/winrichsy/)  
 [Email](winrichsy@gmail.com)  
+
