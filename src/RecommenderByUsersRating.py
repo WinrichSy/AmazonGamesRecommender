@@ -10,6 +10,8 @@ class Recommender_By_Users_Rating:
         self.asin_title = pd.read_csv('../Data/asin_title.csv', index_col=0)
         self.item_similarity = np.load('../Data/item_similarity.npy')
         self.asin_values = self.asin_title['asin'].unique()
+        #instantiate eda object
+        self.eda = EDA()
         pass
 
 
@@ -35,7 +37,7 @@ class Recommender_By_Users_Rating:
         score_series = pd.Series(self.item_similarity[int(idx)]).sort_values(ascending = False)
 
         other_recommended =[]
-        top_10_indexes = score_series.iloc[1:11].index
+        top_10_indexes = score_series.iloc[1:6].index
         for i in top_10_indexes:
             product_title_asin = list(self.asin_title.index)[i]
             recommended_items.append(self.asin_title.iloc[int(product_title_asin), 0])
@@ -46,7 +48,13 @@ class Recommender_By_Users_Rating:
     #===INPUT_RECOMMENDER
     #===Asks for input from user
     def input_recommender(self):
+        print('')
+        print('********************************************************')
+        print('[1] ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING')
+        print('********************************************************')
         user_input = str(input("Enter an asin (q to quit): "))
+        print('')
+
         if user_input == 'q' or user_input == 'Q':
             print('Returning back to menu...')
             print('')
@@ -54,12 +62,14 @@ class Recommender_By_Users_Rating:
 
         if user_input not in self.asin_values:
             print('============================')
-            print('NOT A VALID INPUT!')
+            print('     NOT A VALID INPUT!')
             print('============================')
             print('')
-            return 'invalid'
+            self.eda.countdown('Retry another input in ',countdown_time = 3)
+            return self.input_recommender()
 
         else:
             # print('asin: ' + user_input, self.asin_title[self.asin_title['asin']==user_input]['title'])
-            print('We recommend you try some of these products!')
+            print('Here are some recommendations!')
+            print('------------------------------')
             return self.get_recs(user_input)

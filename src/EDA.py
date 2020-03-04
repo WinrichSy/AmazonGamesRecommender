@@ -4,6 +4,7 @@ import pandas as pd
 import scipy.stats as stats
 import matplotlib.pyplot as plt
 import string
+import time
 
 import matplotlib.ticker as ticker
 import itertools
@@ -104,7 +105,8 @@ class EDA:
     #========print_bar=====================================#
     #========Print functions for bar graphs specifically ==#
     def print_bar(self, x, y, x_label, y_label, title='insert title', orientation='vert', color='blue',
-                  width=0.65, fig_size=(12,7), percentage=False, weight='bold', tick_size=20, title_size=30):
+                  width=0.65, fig_size=(12,7), percentage=False, weight='bold', tick_size=20, title_size=35,
+                  label_size=30):
 
         fig, ax = plt.subplots(figsize=fig_size)
         if orientation=='vert':
@@ -113,11 +115,11 @@ class EDA:
             bars_for_annotation = ax.barh(x, y, color=color, align='center')
 
 
-        plt.xticks(size = 13)
-        plt.yticks(size = 15)
-        plt.xlabel(x_label, size=tick_size, color=color, weight='bold')
-        plt.ylabel(y_label, size=tick_size, color=color, weight='bold')
-        plt.title(title, fontsize=title_size, color=color)
+        plt.xticks(size = tick_size)
+        plt.yticks(size = tick_size)
+        plt.xlabel(x_label, size=label_size, color=color, weight='bold')
+        plt.ylabel(y_label, size=label_size, color=color, weight='bold')
+        plt.title(title, fontsize=title_size, color=color, weight='bold')
 
         if percentage:
             self.autolabel_percent(bars_for_annotation, ax, orientation=orientation)
@@ -318,7 +320,6 @@ class EDA:
             return
 
 
-
     def display_topics(self, model, feature_names, no_top_words, no_top_topics, topic_names=None):
         count = 0
         for ix, topic in enumerate(model.components_):
@@ -330,3 +331,12 @@ class EDA:
                 print("\nTopic: '",topic_names[ix],"'")
             print(", ".join([feature_names[i] for i in topic.argsort()[:-no_top_words-1:-1]]))
             count += 1
+
+    #===COUNTDOWN_TO_MENU===============
+    #===Count down to return to 'menu'==
+    def countdown(self, message, countdown_time = 5):
+        countdown = countdown_time
+        while(countdown>0):
+            print('{}...{}'.format(message, countdown), end='\r')
+            countdown -= 1
+            time.sleep(1)

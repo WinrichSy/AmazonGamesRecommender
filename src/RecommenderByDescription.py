@@ -52,7 +52,7 @@ class Recommender_By_Description:
         #get scores based on consine similarity
         score_series = pd.Series(self.vg_cosine_sim[idx]).sort_values(ascending = False)
 
-        top_10_indexes = list(score_series.iloc[1:11].index)
+        top_10_indexes = list(score_series.iloc[1:6].index)
         seperator = ' '
         for i in top_10_indexes:
             product_description = self.replace_asin_with_description(list(self.videogame_description_table.index)[i])
@@ -78,7 +78,13 @@ class Recommender_By_Description:
     #===INPUT_RECOMMENDER
     #===Asks for input from user
     def input_recommender(self):
+        print('')
+        print('***********************************************')
+        print('[2] ASIN RECOMMENDATIONS THROUGH CONTENT BASED')
+        print('***********************************************')
         user_input = str(input("Enter an asin (q to quit): "))
+        print('')
+
         if user_input == 'q' or user_input == 'Q':
             print('Returning back to menu...')
             print('')
@@ -86,12 +92,14 @@ class Recommender_By_Description:
 
         if user_input not in self.asin_values:
             print('============================')
-            print('NOT A VALID INPUT!')
+            print('     NOT A VALID INPUT!')
             print('============================')
             print('')
-            return 'invalid'
+            self.eda.countdown('Retry another input in ',countdown_time = 3)
+            return self.input_recommender()
 
         else:
             # print('asin: ' + user_input, self.asin_title[self.asin_title['asin']==user_input]['title'])
-            print('We recommend you try some of these products!')
+            print('Here are some recommendations!')
+            print('------------------------------')
             return self.recommendations_by_description(user_input)
