@@ -3,12 +3,12 @@ import time
 #Recommender
 from RecommenderByUsersRating import Recommender_By_Users_Rating
 from RecommenderByDescription import Recommender_By_Description
-# from ColdStart import Cold_Start
+from ColdStart import Cold_Start
 
 if __name__ == '__main__':
     recommender_by_users_rating = Recommender_By_Users_Rating()
     recommend_by_description = Recommender_By_Description()
-    # cold_start = Cold_Start()
+    cold_start = Cold_Start()
 
     while(True):
         os.system('clear')
@@ -20,7 +20,7 @@ if __name__ == '__main__':
         print('Please Enter a Number From the Following: ')
         print('[1] - ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING')
         print('[2] - ASIN RECOMMENDATIONS THROUGH CONTENT BASED')
-        # print('3. Enter your own description')
+        print('[3] - RECOMMEND BY PLATFORM')
         print('(q to quit)')
         print('')
         user_input = str(input('Enter choice of number: '))
@@ -49,13 +49,15 @@ if __name__ == '__main__':
             print('')
             input('Enter anything to continue')
 
-        # #Give User the option to type in own description [in testing]
-        # elif user_input == '3':
-        #     recommend_selection = cold_start.input_recommender()
-        #     for idx, val in enumerate(recommend_selection):
-        #         print(str(idx+1)+": "+val)
-        #     print('Hope you enjoy the selection!')
-        #     print('')
+        #Give User the option to type in own description [in testing]
+        elif user_input == '3':
+            cold_start.hard_code()
+            # coldstart_selection = cold_start.hard_code()
+            # for idx, val in enumerate(recommend_selection):
+            #     print(str(idx+1)+": "+val)
+            # print('Hope you enjoy the selection!')
+            # print('')
+            # input('Enter anything to continue')
 
         #Give User option to quit recommneder program
         elif user_input == 'q':

@@ -1,4 +1,5 @@
 #Recommender by User Rating
+import os
 from EDA import EDA
 import pandas as pd
 import numpy as np
@@ -48,14 +49,14 @@ class Recommender_By_Users_Rating:
     #===INPUT_RECOMMENDER
     #===Asks for input from user
     def input_recommender(self):
-        print('')
+        os.system('clear')
         print('********************************************************')
         print('[1] ASIN RECOMMENDATIONS THROUGH COLLABORATIVE FILTERING')
         print('********************************************************')
         user_input = str(input("Enter an asin (q to quit): "))
         print('')
 
-        if user_input == 'q' or user_input == 'Q':
+        if user_input == 'q':
             print('Returning back to menu...')
             print('')
             return 'quit'

@@ -1,4 +1,5 @@
 #Recommender by item description
+import os
 from EDA import EDA
 import pandas as pd
 import numpy as np
@@ -78,14 +79,14 @@ class Recommender_By_Description:
     #===INPUT_RECOMMENDER
     #===Asks for input from user
     def input_recommender(self):
-        print('')
+        os.system('clear')
         print('***********************************************')
         print('[2] ASIN RECOMMENDATIONS THROUGH CONTENT BASED')
         print('***********************************************')
         user_input = str(input("Enter an asin (q to quit): "))
         print('')
 
-        if user_input == 'q' or user_input == 'Q':
+        if user_input == 'q':
             print('Returning back to menu...')
             print('')
             return 'quit'
