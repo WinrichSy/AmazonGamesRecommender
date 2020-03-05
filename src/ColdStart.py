@@ -104,11 +104,8 @@ class Cold_Start:
         print('')
 
         if user_input == 'q':
-            while(countdown>0):
-                print('Returning to menu...{}'.format(countdown), end='\r')
-                countdown -= 1
-                time.sleep(1)
-            return 'quit'
+            self.eda.countdown('Returning to menu',countdown_time = 3)
+            return
 
         if user_input not in self.choices:
             print('============================')
